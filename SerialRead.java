@@ -14,8 +14,9 @@ public class SerialRead implements Runnable {
 	
 	public void run() {
 		
-		
+		//自創一個Method getPortName()
 		serialPort = new SerialPort(getPortName());
+		//以防隱性COM出現，可指定“COM10”
 		//serialPort = new SerialPort("COM10");
         try {
         	
@@ -39,7 +40,7 @@ public class SerialRead implements Runnable {
                         SerialFlag++;
                        }
                        for(int j=0;j<10;j++) {
-                        
+                        //解析數據，轉成數值傳出去
                         if(st[j].compareTo("@")==0) {
                         		if(message.length()!=0) {
                         			if(SerialFlag>=800) {
@@ -90,7 +91,7 @@ public class SerialRead implements Runnable {
 
 
 	}             
-	
+	//將第一個抓到的Port傳出來
 	public String getPortName() {
 		String[] portNames = SerialPortList.getPortNames();
         for(int i = 0; i < portNames.length; i++){
